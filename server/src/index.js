@@ -2,6 +2,11 @@ import 'dotenv/config';
 import { server } from './setup';
 
 /**
+ * setup db
+ */
+import './config/database';
+
+/**
  * Get port from environment and store in Express.
  */
 const normalizePort = (val) => {
