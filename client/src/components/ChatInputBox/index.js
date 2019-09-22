@@ -13,11 +13,15 @@ const ChatInputBox = () => {
     setInput(event.target.value);
   };
 
+  const sendIt = () => {
+    setInput('');
+    return sendMessage(input);
+  };
+
   const keyPressed = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      setInput('');
-      return sendMessage(input);
+      return sendIt();
     }
     return true;
   };
@@ -34,7 +38,9 @@ const ChatInputBox = () => {
           onKeyPress={keyPressed}
         />
         <InputGroup.Append>
-          <Button variant="outline-secondary">Go !</Button>
+          <Button variant="outline-secondary" onClick={sendIt}>
+            Go !
+          </Button>
         </InputGroup.Append>
       </InputGroup>
     </InputContainer>

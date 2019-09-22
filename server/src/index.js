@@ -7,6 +7,11 @@ import { server } from './setup';
 import './config/database';
 
 /**
+ * setup socket
+ */
+import './socket/index';
+
+/**
  * Get port from environment and store in Express.
  */
 const normalizePort = (val) => {

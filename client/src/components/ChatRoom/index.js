@@ -5,26 +5,14 @@ import Message from '../Message';
 import { ChatBox, ChatHistory } from './style';
 
 const ChatRoom = () => {
-  const { allUsersMap } = useAppContext();
+  const { allUsersMap, messages } = useAppContext();
   const lastItemRef = useRef(null);
-  const messages = [
-    {
-      _id: '1',
-      text: 'something one',
-      sender: '5d85e3aaa52b17189b1a287b',
-    },
-    {
-      _id: '2',
-      text: 'something two',
-      sender: '5d85a0b6a8b0d00bef54cfb6',
-    },
-  ];
 
   useEffect(() => {
     lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
   return (
-    <div>
+    <div style={{ minHeight: 280 }}>
       <ChatBox>
         <ChatHistory>
           <div>

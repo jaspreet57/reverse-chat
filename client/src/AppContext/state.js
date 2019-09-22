@@ -7,6 +7,7 @@ const getInitialState = () => {
     user: user ? JSON.parse(user) : {},
     allUserIds: [],
     allUsersMap: {},
+    messages: [],
     error: null,
   };
 

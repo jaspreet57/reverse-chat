@@ -3,6 +3,7 @@ import {
   SET_USER,
   SET_USERS,
   LOGOUT_USER,
+  ADD_NEW_MESSAGE,
 } from './actions-types';
 
 const generateUsersMap = (users) => {
@@ -30,6 +31,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: { ...action.payload.user },
+      };
+    case ADD_NEW_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, action.payload.message],
       };
     case LOGOUT_USER:
       return getInitialState();

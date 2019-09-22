@@ -1,7 +1,5 @@
 import {
-  SET_USER,
-  SET_USERS,
-  LOGOUT_USER,
+  SET_USER, SET_USERS, LOGOUT_USER, ADD_NEW_MESSAGE,
 } from './actions-types';
 import { localStorageKeys } from '../config';
 
@@ -20,6 +18,18 @@ const setUsersHandler = (dispatch) => (users) => {
   });
 };
 
+const newMessageHandler = (dispatch, fetchUsers) => (message, user, allUsersIds) => {
+  if (!allUsersIds.includes(message.sender)) {
+    return fetchUsers(user);
+  }
+  return dispatch({
+    type: ADD_NEW_MESSAGE,
+    payload: {
+      message,
+    },
+  });
+};
+
 const logoutAndResetAppHandler = (dispatch) => () => {
   localStorage.removeItem(localStorageKeys.USER_DETAILS);
   dispatch({
@@ -28,7 +38,5 @@ const logoutAndResetAppHandler = (dispatch) => () => {
 };
 
 export {
-  setLoggedInUserHandler,
-  setUsersHandler,
-  logoutAndResetAppHandler,
+  setLoggedInUserHandler, setUsersHandler, logoutAndResetAppHandler, newMessageHandler,
 };

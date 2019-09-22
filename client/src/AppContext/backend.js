@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { getUsers } from '../API';
 
-const fetchUsersApi = (setUsers, logoutUser) => async (user) => {
+const fetchUsersData = (setUsers, logoutUser) => async (user) => {
   try {
     const { data: users } = await getUsers(user.authToken);
     setUsers(users);
@@ -18,6 +18,6 @@ const fetchUsersApi = (setUsers, logoutUser) => async (user) => {
 const otherApis = {};
 
 export {
-  fetchUsersApi,
+  fetchUsersData,
   otherApis,
 };
