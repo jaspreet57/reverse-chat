@@ -13,19 +13,11 @@ const openErrorAlert = (error) => {
   }
 };
 
-const getUsers = async (token) => {
-  let result;
-  try {
-    result = await axios.get(`${url}/users`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  } catch (error) {
-    openErrorAlert(error);
-  }
-  return result;
-};
+const getUsers = (token) => axios.get(`${url}/users`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 const authenticateUser = async (type, loginData) => {
   let result;

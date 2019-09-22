@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Container, Jumbotron } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import { GoogleLogin } from 'react-google-login';
 import { toast } from 'react-toastify';
 import LoginForm from '../../components/LoginForm';
@@ -42,29 +42,27 @@ const LoginPage = () => {
   }
 
   return (
-    <Container className="p-3">
-      <Jumbotron>
-        {loading ? (
-          <div>...loading</div>
-        ) : (
-          <div>
-            <div style={{ display: 'block' }}>
-              <GoogleLogin
-                clientId={authClients.GOOGLE_CLIENT_ID}
-                buttonText="Login with Google"
-                onSuccess={handleGoogleLogin}
-                onFailure={openErrorAlert}
-                width={200}
-                theme="dark"
-              />
-            </div>
-            <br />
-            <h3> OR Login the old fashioned way :)</h3>
-            <LoginForm handleFormSubmit={handleFormSubmit} />
+    <Jumbotron>
+      {loading ? (
+        <div>...loading</div>
+      ) : (
+        <div>
+          <div style={{ display: 'block' }}>
+            <GoogleLogin
+              clientId={authClients.GOOGLE_CLIENT_ID}
+              buttonText="Login with Google"
+              onSuccess={handleGoogleLogin}
+              onFailure={openErrorAlert}
+              width={200}
+              theme="dark"
+            />
           </div>
-        )}
-      </Jumbotron>
-    </Container>
+          <br />
+          <h3> OR Login the old fashioned way :)</h3>
+          <LoginForm handleFormSubmit={handleFormSubmit} />
+        </div>
+      )}
+    </Jumbotron>
   );
 };
 

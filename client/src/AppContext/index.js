@@ -27,13 +27,12 @@ const AppContext = () => {
   const setUser = useRef(setLoggedInUserHandler(dispatch));
   const logoutAndResetApp = useRef(logoutAndResetAppHandler(dispatch));
 
-
-  const fetchUsers = useRef(fetchUsersApi(setUsers.current));
-
   const logoutUser = useRef(() => {
     // todo : close socket connections here
     logoutAndResetApp.current();
   });
+
+  const fetchUsers = useRef(fetchUsersApi(setUsers.current, logoutUser.current));
 
   return {
     user,
