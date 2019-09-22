@@ -19,7 +19,7 @@ const ChatRoom = ({ activeKey }) => {
     lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
   return (
-    <div style={{ minHeight: 280 }}>
+    <div style={{ minHeight: 350 }}>
       <ChatBox>
         <ChatHistory>
           <div>
