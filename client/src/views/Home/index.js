@@ -6,6 +6,7 @@ import {
 import { useAppContext } from '../../AppContext';
 import Dashboard from '../../components/Dashboard';
 import ChatRoom from '../../components/ChatRoom';
+import SpinnerContainer from '../../components/SpinnerContainer';
 
 function Home() {
   const {
@@ -24,7 +25,7 @@ function Home() {
   }
 
   if (!allUserIds.length) {
-    return <div style={{ height: '100vh', width: '100vw' }}>...loading</div>;
+    return <div style={{ height: '100vh', width: '100vw' }}><SpinnerContainer /></div>;
   }
 
   return (

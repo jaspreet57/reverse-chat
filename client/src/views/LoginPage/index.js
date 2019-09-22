@@ -9,6 +9,7 @@ import { useAppContext } from '../../AppContext';
 import useApi from '../../custom-hooks/use-api';
 import { authenticateUser } from '../../API';
 import { authClients } from '../../config';
+import SpinnerContainer from '../../components/SpinnerContainer';
 
 const openErrorAlert = (error) => {
   toast.error((error && error.message) || 'User not found!');
@@ -44,7 +45,7 @@ const LoginPage = () => {
   return (
     <Jumbotron>
       {loading ? (
-        <div>...loading</div>
+        <SpinnerContainer />
       ) : (
         <div>
           <div style={{ display: 'block' }}>
