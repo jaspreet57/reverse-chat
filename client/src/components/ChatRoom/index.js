@@ -1,12 +1,19 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { useAppContext } from '../../AppContext';
 import ChatInputBox from '../ChatInputBox';
 import Message from '../Message';
 import { ChatBox, ChatHistory } from './style';
 
-const ChatRoom = () => {
+const ChatRoom = ({ activeKey }) => {
   const { allUsersMap, messages } = useAppContext();
   const lastItemRef = useRef(null);
+
+  if (activeKey === 'chatroom') {
+    setTimeout(() => {
+      lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+  }
 
   useEffect(() => {
     lastItemRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -26,6 +33,10 @@ const ChatRoom = () => {
       </ChatBox>
     </div>
   );
+};
+
+ChatRoom.propTypes = {
+  activeKey: PropTypes.string.isRequired,
 };
 
 export default ChatRoom;

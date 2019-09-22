@@ -1,5 +1,11 @@
 import {
-  SET_USER, SET_USERS, LOGOUT_USER, ADD_NEW_MESSAGE,
+  SET_USER,
+  SET_USERS,
+  LOGOUT_USER,
+  ADD_NEW_MESSAGE,
+  SET_MESSAGES,
+  SET_MESSAGE_COUNT,
+  UPDATE_ONE_MESSAGE_COUNT,
 } from './actions-types';
 import { localStorageKeys } from '../config';
 
@@ -18,16 +24,38 @@ const setUsersHandler = (dispatch) => (users) => {
   });
 };
 
+const setMessagesHandler = (dispatch) => (messages) => {
+  dispatch({
+    type: SET_MESSAGES,
+    payload: { messages },
+  });
+};
+
+const setMessageCountHandler = (dispatch) => (messageCounts) => {
+  dispatch({
+    type: SET_MESSAGE_COUNT,
+    payload: { messageCounts },
+  });
+};
+
+const updateOneMessageCount = (dispatch) => (sender) => {
+  dispatch({
+    type: UPDATE_ONE_MESSAGE_COUNT,
+    payload: { sender },
+  });
+};
+
 const newMessageHandler = (dispatch, fetchUsers) => (message, user, allUsersIds) => {
   if (!allUsersIds.includes(message.sender)) {
     return fetchUsers(user);
   }
-  return dispatch({
+  dispatch({
     type: ADD_NEW_MESSAGE,
     payload: {
       message,
     },
   });
+  return updateOneMessageCount(dispatch)(message.sender);
 };
 
 const logoutAndResetAppHandler = (dispatch) => () => {
@@ -38,5 +66,11 @@ const logoutAndResetAppHandler = (dispatch) => () => {
 };
 
 export {
-  setLoggedInUserHandler, setUsersHandler, logoutAndResetAppHandler, newMessageHandler,
+  setLoggedInUserHandler,
+  setUsersHandler,
+  logoutAndResetAppHandler,
+  newMessageHandler,
+  setMessagesHandler,
+  setMessageCountHandler,
+  updateOneMessageCount,
 };

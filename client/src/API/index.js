@@ -19,6 +19,18 @@ const getUsers = (token) => axios.get(`${url}/users`, {
   },
 });
 
+const getMessageCount = (token) => axios.get(`${url}/messages/count-by-user`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+const getMessages = (token) => axios.get(`${url}/messages`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
 const authenticateUser = async (type, loginData) => {
   let result;
   try {
@@ -53,4 +65,6 @@ const signupUser = async (signupData) => {
   return result;
 };
 
-export { getUsers, authenticateUser, signupUser };
+export {
+  getUsers, getMessageCount, getMessages, authenticateUser, signupUser,
+};

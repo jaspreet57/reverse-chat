@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import {
   Navbar, Button, Tabs, Tab,
@@ -11,6 +11,7 @@ function Home() {
   const {
     user, allUserIds, fetchUsers, logoutUser,
   } = useAppContext();
+  const [key, setKey] = useState('dashboard');
 
   useEffect(() => {
     if (user && user.email) {
@@ -36,12 +37,12 @@ function Home() {
       </Navbar>
       <br />
       <br />
-      <Tabs defaultActiveKey="dashboard" id="home-tabs">
+      <Tabs activeKey={key} onSelect={(k) => setKey(k)} id="home-tabs">
         <Tab eventKey="dashboard" title="Dashboard">
           <Dashboard />
         </Tab>
         <Tab eventKey="chatroom" title="Char Room">
-          <ChatRoom />
+          <ChatRoom activeKey={key} />
         </Tab>
       </Tabs>
     </div>

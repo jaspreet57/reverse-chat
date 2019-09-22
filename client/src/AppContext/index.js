@@ -9,6 +9,8 @@ import {
   setUsersHandler,
   logoutAndResetAppHandler,
   newMessageHandler,
+  setMessagesHandler,
+  setMessageCountHandler,
 } from './action-handlers';
 
 import { fetchUsersData } from './backend';
@@ -23,6 +25,8 @@ const AppContext = () => {
   } = state;
 
   const setUsers = useRef(setUsersHandler(dispatch));
+  const setMessages = useRef(setMessagesHandler(dispatch));
+  const setMessageCount = useRef(setMessageCountHandler(dispatch));
   const setUser = useRef(setLoggedInUserHandler(dispatch));
   const logoutAndResetApp = useRef(logoutAndResetAppHandler(dispatch));
 
@@ -34,7 +38,14 @@ const AppContext = () => {
     logoutAndResetApp.current();
   });
 
-  const fetchUsers = useRef(fetchUsersData(setUsers.current, logoutUser.current));
+  const fetchUsers = useRef(
+    fetchUsersData({
+      setUsers: setUsers.current,
+      setMessages: setMessages.current,
+      setMessageCount: setMessageCount.current,
+      logoutUser: logoutUser.current,
+    }),
+  );
   const newMessage = useRef(newMessageHandler(dispatch, fetchUsers.current));
 
   // integration with socket module

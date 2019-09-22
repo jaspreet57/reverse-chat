@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MessageContainer from './style';
 
 const Message = (props) => {
   const { message, user } = props;
 
   return (
-    <div>
+    <MessageContainer>
       <h4>{user.name || user.email}</h4>
       <p>{message.text}</p>
-    </div>
+    </MessageContainer>
   );
 };
 
